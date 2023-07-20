@@ -1,19 +1,19 @@
 package com.learn.java.streams;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Employee {
     private Integer employeeId;
     private String employeeName;
     private LocalDate employyeeDoj;
     private LocalDate employeeDob;
-
-    private BigDecimal Salary;
+private String jobLocation;
+    private BigDecimal salary;
 }
