@@ -3,6 +3,8 @@ package com.learn.java.streams;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class EmployeeUtils {
@@ -19,7 +21,7 @@ public class EmployeeUtils {
         Employee employee2 = new Employee(2, "sai", LocalDate.of(2018, 05, 06),
                 LocalDate.of(1997, 05, 12), "guntur",
                 new BigDecimal(50000));
-        Employee employee3 = new Employee(1, "raj", LocalDate.of(2021, 10, 06),
+        Employee employee3 = new Employee(3, "raj", LocalDate.of(2021, 10, 06),
                 LocalDate.of(1990, 05, 06),
                 "hyd",
                 new BigDecimal(65000));
@@ -53,5 +55,25 @@ public class EmployeeUtils {
         int currentYear = LocalDate.now().getYear();
         return currentYear - year;
     }
+
+    public static void employeesGroupByLoc(List<Employee> employees) {
+
+        final Map<String, List<Employee>> map = employees.stream().collect(Collectors.groupingBy(employee -> employee.getJobLocation()));
+        map.forEach((k, v) -> {
+            System.out.println("Job Location= " + k);
+            System.out.println("employees= " + v);
+        });
+    }
+
+    public static void employeesSalaryByLoc(List<Employee> employees) {
+        employees.stream().collect(
+                        Collectors.groupingBy(emp -> emp.getJobLocation(),
+                                Collectors.summingDouble(emp -> emp.getSalary().doubleValue())))
+                .forEach((k, v) -> {
+                    System.out.println("Job Location =" + k);
+                    System.out.println("Total Salary =" + v);
+                });
+    }
+
 
 }

@@ -12,5 +12,7 @@ public class EmployeeClient {
         final List<Employee> employeeGreaterThen = EmployeeUtils.employeeGreaterThen(employees, age);
         System.out.println("employees greater then age= " + age + " " + employeeGreaterThen);
 
+        EmployeeUtils.employeesGroupByLoc(employees);
+        EmployeeUtils.employeesSalaryByLoc(employees);
     }
 }
